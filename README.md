@@ -70,7 +70,7 @@ npm test
 
 ## Live Demo
 
-The API is deployed at: [Your Render URL]
+The API is deployed at: https://blogging-api-vlga.onrender.com
 
 ## Test Coverage
 
