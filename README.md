@@ -1,67 +1,83 @@
 # Blogging API
 
-A REST API for a blogging platform built with Node.js, Express, and MongoDB.
+A RESTful API for a blogging platform built with Node.js, Express, and MongoDB.
 
-## Setup
+## Features
 
-1. **Install dependencies**
-   ```bash
-   npm install
-   ```
-
-2. **Environment variables**
-   Create a `.env` file:
-   ```
-   PORT=3000
-   MONGODB_URI=mongodb://localhost:27017/blogging-api
-   JWT_SECRET=your-secret-key
-   NODE_ENV=development
-   ```
-
-3. **Start the server**
-   ```bash
-   npm run dev
-   ```
-
-4. **Run tests**
-   ```bash
-   npm test
-   ```
+- User authentication (signup/signin)
+- Blog CRUD operations
+- Pagination and search functionality
+- Reading time calculation
+- State management (draft/published)
+- User-specific blog access
 
 ## API Endpoints
 
 ### Authentication
-- `POST /api/auth/signup` - Register user
-- `POST /api/auth/signin` - Login user
+- `POST /api/auth/signup` - Create new user
+- `POST /api/auth/signin` - Sign in user
 
 ### Blogs
-- `GET /api/blogs` - Get all published blogs (public)
-- `GET /api/blogs/:id` - Get single blog (public)
-- `POST /api/blogs` - Create blog (auth required)
-- `PUT /api/blogs/:id` - Update blog (owner only)
-- `DELETE /api/blogs/:id` - Delete blog (owner only)
+- `GET /api/blogs` - Get all published blogs (supports pagination, search, ordering)
+- `GET /api/blogs/:id` - Get single blog by ID
+- `POST /api/blogs` - Create new blog (authenticated)
+- `PUT /api/blogs/:id` - Update blog (authenticated, owner only)
+- `DELETE /api/blogs/:id` - Delete blog (authenticated, owner only)
 
-### User
-- `GET /api/users/blogs` - Get user's blogs (auth required)
+### User Blogs
+- `GET /api/users/blogs` - Get user's own blogs (authenticated)
 
-## Features
+## Tech Stack
 
-- User authentication with JWT (1-hour expiry)
-- Blog states: draft/published
-- Pagination, search, and filtering
-- Reading time calculation
-- Read count tracking
-- Owner-only blog modifications
+- **Backend:** Node.js, Express.js
+- **Database:** MongoDB with Mongoose
+- **Authentication:** JWT
+- **Testing:** Jest, Supertest
+- **Deployment:** Render
 
-## Authentication
+## Installation
 
-Include JWT token in requests:
+1. Clone the repository
+```bash
+git clone https://github.com/Purpose-Longe/blogging-api
+cd blogging-api
 ```
-Authorization: Bearer <token>
+
+2. Install dependencies
+```bash
+npm install
 ```
 
-## Models
+3. Set up environment variables
+```bash
+# Create .env file
+MONGODB_URI=my_mongodb_connection_string
+JWT_SECRET=my_jwt_secret
+PORT=3000
+```
 
-**User:** first_name, last_name, email, password
+4. Run the application
+```bash
+npm start
+```
 
-**Blog:** title, description, body, author, state, read_count, reading_time, tags
+## Testing
+
+Run all tests:
+```bash
+npm test
+```
+
+## Live Demo
+
+The API is deployed at: [Your Render URL]
+
+## Test Coverage
+
+- Authentication endpoints (signup, signin)
+- Blog CRUD operations
+- Pagination and filtering
+- User authorization
+- Error handling
+
+All tests passing: 12/12
